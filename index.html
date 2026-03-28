@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI & Smart Home</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<style>
+:root {
+    --primary: linear-gradient(135deg,#e6ccb2,#d2b48c,#c2a383);
+}
+
+/* Body */
+body{
+    font-family:'Segoe UI',Tahoma;
+    margin:0;
+    direction:rtl;
+    overflow-x:hidden;
+    background: linear-gradient(-45deg,#f5e6d3,#e8d3b9,#d9c2a3,#f3e2cc);
+    background-size:400% 400%;
+    animation:bgMove 12s ease infinite;
+}
+
+/* موجات خفيفة */
+body::before, body::after{
+    content:"";
+    position:fixed;
+    width:200%;
+    height:200%;
+    top:-50%;
+    left:-50%;
+    background: radial-gradient(circle at center, rgba(255,255,255,0.3), transparent 70%);
+    animation: waveMove 12s linear infinite;
+    z-index:-1;
+}
+body::after{
+    animation-duration:18s;
+    opacity:0.5;
+}
+
+@keyframes waveMove{
+0%{transform:translateX(0) translateY(0);}
+50%{transform:translateX(50px) translateY(30px);}
+100%{transform:translateX(0) translateY(0);}
+}
+
+@keyframes bgMove{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+/* Header */
+header{
+    background:var(--primary);
+    height:250px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#4b3b2a;
+}
+
+/* Container */
+.container{
+    max-width:1100px;
+    margin:-60px auto 50px;
+    padding:20px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+/* Boxes */
+.box{
+    background:rgba(255,255,255,0.95);
+    padding:25px;
+    border-radius:15px;
+    text-align:center;
+    color:#3e2f1c;
+    box-shadow:0 0 20px rgba(180,140,100,0.4);
+    opacity:0;
+    transform:translateY(40px);
+    transition:0.3s;
+    cursor:pointer;
+}
+
+.box:hover{
+    transform:translateY(-5px) scale(1.02);
+}
+
+.box i{
+    font-size:40px;
+    margin-bottom:15px;
+    color:#b08968;
+}
+
+/* Animation */
+.visible{
+    animation:fadeInUp 0.8s forwards;
+}
+@keyframes fadeInUp{
+0%{opacity:0; transform:translateY(40px);}
+100%{opacity:1; transform:translateY(0);}
+}
+
+/* Robot */
+.robot-section{
+    text-align:center;
+    padding:50px;
+}
+
+.robot-img{
+    max-width:500px;
+    width:100%;
+    filter:
+    drop-shadow(0 0 15px rgba(210,180,140,0.8))
+    drop-shadow(0 0 30px rgba(214, 195, 170, 0.5));
+    animation:float 4s ease-in-out infinite;
+}
+@keyframes float{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(-20px);}
+}
+
+/* Footer */
+footer{
+    padding:40px;
+    text-align:center;
+    background:rgba(255,255,255,0.9);
+}
+.social-links a{
+    font-size:28px;
+    margin:0 15px;
+    color:#7f5539;
+    transition:0.3s;
+}
+.social-links a:hover{
+    transform:scale(1.2);
+    color:#b08968;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>AI & Smart Home</h1>
+</header>
+
+<!-- Main Boxes -->
+<div class="container">
+    <div class="box" data-link="about.html">
+        <i class="fas fa-info-circle"></i>
+        <h3>عن المشروع</h3>
+    </div>
+    <div class="box" data-link="goals.html">
+        <i class="fas fa-bullseye"></i>
+        <h3>هدف المشروع</h3>
+    </div>
+    <div class="box" data-link="structure.html">
+        <i class="fas fa-project-diagram"></i>
+        <h3>هيكل المشروع</h3>
+    </div>
+    <div class="box" data-link="users.html">
+        <i class="fas fa-user-friends"></i>
+        <h3>الفئات المستهدفة</h3>
+    </div>
+</div>
+
+<!-- Robot Section -->
+<div class="robot-section">
+<img src="robot.jpeg" class="robot-img">
+<h2>Smart Living Powered by AI</h2>
+</div>
+
+<script>
+// Animate boxes & links
+window.addEventListener('DOMContentLoaded', ()=>{
+    const boxes = document.querySelectorAll('.box');
+
+    boxes.forEach((box,index)=>{
+        setTimeout(()=>{ box.classList.add('visible'); }, index*300);
+
+        box.addEventListener('click', ()=>{
+            const link = box.getAttribute('data-link');
+            if(link) window.location.href = link;
+        });
+    });
+});
+</script>
+
+<!-- Footer -->
+<footer>
+<div class="social-links">
+<a href="#"><i class="fab fa-facebook"></i></a>
+<a href="#"><i class="fab fa-instagram"></i></a>
+<a href="#"><i class="fab fa-linkedin"></i></a>
+</div>
+</footer>
+
+</body>
+</html>
